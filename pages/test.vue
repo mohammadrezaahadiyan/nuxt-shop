@@ -13,7 +13,6 @@ const isOpenModal = ref(false)
 
 onMounted(async () => {
   let res = await FetchApi('/banner')
-  console.log(res)
 })
 
 </script>

@@ -4,7 +4,6 @@ import type {UserDTo} from "~/models/users/userDTo";
 import {getCurrentUser} from "~/services/user.service";
 import {AppStatusCode} from "~/models/ApiResponse";
 
-
 export const useAuthStore = defineStore('auth', () => {
 
     const loginResult: Ref<LoginResultsDTo | null> = ref(null)
