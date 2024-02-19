@@ -5,5 +5,10 @@ export default defineNuxtConfig({
         "@/assets/css/custom.css",
         "assets/css/theme.css"
     ],
-    modules:['@pinia/nuxt']
+    modules:['@pinia/nuxt'],
+    vite:{
+        server:{
+            proxy:{'/api': "https://shop-api.codeyad-project.ir/"}
+        }
+    }
 })
