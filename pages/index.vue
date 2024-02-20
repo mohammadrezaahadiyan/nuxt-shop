@@ -1,80 +1,29 @@
 <script setup lang="ts">
-
 import {useHomeStore} from "~/stores/homeStore";
+import {BannerPosition} from "~/models/home/homeDataDto";
 
 const homeStore = useHomeStore()
 
-onMounted(() => {
-
-  homeStore.setHomeData()
+onMounted(async () => {
+  await homeStore.setHomeData()
 })
-
+if (homeStore.banners){
+  console.log(homeStore.banners)
+}
 </script>
 
 <template>
-<nuxt-link class="btn btn-primary" to="/test"></nuxt-link>
+  <nuxt-link class="btn btn-primary" to="/test"></nuxt-link>
   <div>
 
-    <div class="row mb-3 d-sm-block d-none">
-      <div class="col-12">
-        <!-- start of banner -->
-        <div class="banner-img">
-          <a href="#"><img src="/images/banner/025.gif" alt="banner"></a>
-        </div>
-        <!-- end of banner -->
-      </div>
-    </div>
+    <HomeBanners v-if="homeStore.banners" :banners="homeStore.banners" :position="BannerPosition.topSide"/>
+
     <div class="row mb-5">
-      <div class="col-lg-8 mb-lg-0 mb-4">
-        <!-- start of main-slider -->
-        <HomeMainSlider :data="homeStore.sliders"/>
-        <!-- end of main-slider -->
-      </div>
-      <div class="col-lg-4">
-        <div class="row">
-          <div class="col-lg-12 col-6 mb-lg-3">
-            <!-- start of banner -->
-            <div class="banner-img banner-side-main-slider bg-position-right">
-              <a href="#"
-                 style="background-image: url(/images/banner/026.jpg);height:220px;">
-                <img src="/images/banner/026.jpg" alt="">
-              </a>
-            </div>
-            <!-- end of banner -->
-          </div>
-          <div class="col-lg-12 col-6">
-            <!-- start of banner -->
-            <div class="banner-img banner-side-main-slider bg-position-right">
-              <a href="#"
-                 style="background-image: url(/images/banner/027.jpg);height:220px;">
-                <img src="/images/banner/027.jpg" alt="">
-              </a>
-            </div>
-            <!-- end of banner -->
-          </div>
-        </div>
-      </div>
+      <HomeMainSlider v-if="homeStore.sliders" :data="homeStore.sliders"/>
+      <HomeBanners v-if="homeStore.banners" :banners="homeStore.banners" :position="BannerPosition.leftSide"/>
     </div>
-    <div class="row mb-5">
-      <div class="col-md-6 mb-lg-0 mb-3">
-        <!-- start of banner -->
-        <div class="banner-img">
-          <a href="#">
-            <img src="/images/banner/018.jpg" alt="">
-          </a>
-        </div>
-        <!-- end of banner -->
-      </div>
-      <div class="col-md-6 mb-lg-0 mb-3">
-        <!-- start of banner -->
-        <div class="banner-img">
-          <a href="#">
-            <img src="/images/banner/019.jpg" alt="">
-          </a>
-        </div>
-        <!-- end of banner -->
-      </div>
-    </div>
+
+    <HomeBanners v-if="homeStore.banners" :banners="homeStore.banners" :position="BannerPosition.bottomSide"/>
     <!-- start of box => specials-product-slider -->
     <div class="ui-box ui-box-specials pb-3 mb-5" style="background-color: #f03426;">
       <div class="container">
@@ -760,44 +709,7 @@ onMounted(() => {
       </div>
     </div>
     <!-- end of box => categories-slider -->
-    <div class="row mb-5">
-      <div class="col-md-3 col-6 mb-lg-0 mb-3">
-        <!-- start of banner -->
-        <div class="banner-img">
-          <a href="#">
-            <img src="/images/banner/020.jpg" alt="">
-          </a>
-        </div>
-        <!-- end of banner -->
-      </div>
-      <div class="col-md-3 col-6 mb-lg-0 mb-3">
-        <!-- start of banner -->
-        <div class="banner-img">
-          <a href="#">
-            <img src="/images/banner/021.jpg" alt="">
-          </a>
-        </div>
-        <!-- end of banner -->
-      </div>
-      <div class="col-md-3 col-6 mb-lg-0 mb-3">
-        <!-- start of banner -->
-        <div class="banner-img">
-          <a href="#">
-            <img src="/images/banner/022.jpg" alt="">
-          </a>
-        </div>
-        <!-- end of banner -->
-      </div>
-      <div class="col-md-3 col-6 mb-lg-0 mb-3">
-        <!-- start of banner -->
-        <div class="banner-img">
-          <a href="#">
-            <img src="/images/banner/023.jpg" alt="">
-          </a>
-        </div>
-        <!-- end of banner -->
-      </div>
-    </div>
+    <HomeBanners v-if="homeStore.banners" :banners="homeStore.banners" :position="BannerPosition.middleSide"/>
     <!-- start of box -->
     <div class="ui-box mb-5">
       <div class="ui-box-title">منتخب محصولات تخفیف و حراج</div>

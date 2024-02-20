@@ -1,40 +1,42 @@
 <script setup lang="ts">
-import {Carousel, Slide, Navigation, Pagination} from "vue3-carousel";
+import {Carousel, Slide} from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css"
 import type {SliderDto} from "~/models/home/homeDataDto";
 import {getSliderImage} from "~/utilities/imageUrls";
 
 const currentSlide = ref(0)
-const props = defineProps<{data: SliderDto[]}>()
+const props = defineProps<{ data: SliderDto[] }>()
 </script>
 
 <template>
-  <Carousel dir="rtl" v-model="currentSlide">
+  <div class="col-lg-8 mb-lg-0 mb-4">
+    <Carousel dir="rtl" v-model="currentSlide">
 
-    <Slide v-for="item in props.data" :key="item.id" class="swiper-slide main-swiper-slide">
-      <a class="carousel__item" :href="item.link">
-        <img :src="getSliderImage(item.imageName)" alt="">
-      </a>
-    </Slide>
+      <Slide v-for="item in props.data" :key="item.id" class="swiper-slide main-swiper-slide">
+        <a class="carousel__item" :href="item.link">
+          <img :src="getSliderImage(item.imageName)" alt="">
+        </a>
+      </Slide>
 
-    <template #addons="{slidesCount}">
+      <template #addons="{slidesCount}">
 
-      <div class="slider__navigation">
-        <div class="swiper-button-prev" v-if="slidesCount > currentSlide + 1" @click="currentSlide++"></div>
-        <div class="swiper-button-next" v-if="currentSlide > 0" @click="currentSlide--"></div>
-      </div>
+        <div class="slider__navigation">
+          <div class="swiper-button-prev" v-if="slidesCount > currentSlide + 1" @click="currentSlide++"></div>
+          <div class="swiper-button-next" v-if="currentSlide > 0" @click="currentSlide--"></div>
+        </div>
 
-      <div class="slider__pagination">
-        <label
-            :class="{'active': item == (currentSlide + 1)}"
-            v-for="item in slidesCount" :key="item"
-            @click="item = (currentSlide - 1)"
-        >
-        </label>
-      </div>
-    </template>
+        <div class="slider__pagination">
+          <label
+              :class="{'active': item == (currentSlide + 1)}"
+              v-for="item in slidesCount" :key="item"
+              @click="item = (currentSlide - 1)"
+          >
+          </label>
+        </div>
+      </template>
 
-  </Carousel>
+    </Carousel>
+  </div>
 </template>
 
 <style scoped>

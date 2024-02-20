@@ -1,6 +1,7 @@
 import type {ProductCardDto} from "~/models/productCard";
 
 export interface BannerDto {
+    id:number
     creationDate: Date;
     link: string;
     imageName: string;
@@ -8,11 +9,11 @@ export interface BannerDto {
 }
 
 export enum BannerPosition{
-    زیر_اسلایدر,
-    سمت_چپ_اسلایدر,
-    بالای_اسلایدر,
-    سمت_راست_شگفت_انگیز,
-    وسط_صفحه,
+    bottomSide,
+    leftSide,
+    topSide,
+    specialSide,
+    middleSide,
 }
 
 export interface SliderDto{
