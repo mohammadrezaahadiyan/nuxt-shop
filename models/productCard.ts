@@ -8,4 +8,5 @@ export interface ProductCardDto {
     imageName: string;
     rate: string;
     totalPrice: number;
+    commentCount: number
 }
