@@ -17,7 +17,7 @@ const loginData = reactive({
   password:''
 })
 
-const login = async (data:any, formEvent:any) => {
+const login = async (data, formEvent) => {
   loading.value = true
   const result = await LoginUser(loginData)
   loading.value = false

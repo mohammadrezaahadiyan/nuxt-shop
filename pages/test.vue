@@ -3,8 +3,18 @@ import * as Yup from "yup";
 import {Form} from "vee-validate"
 import {FetchApi} from "~/utilities/CustomFetchApi";
 
-const email = ref("")
 
+const items = [
+  'https://picsum.photos/600/800?random=1',
+  'https://picsum.photos/600/800?random=2',
+  'https://picsum.photos/600/800?random=3',
+  'https://picsum.photos/600/800?random=4',
+  'https://picsum.photos/600/800?random=5',
+  'https://picsum.photos/600/800?random=6'
+]
+
+const email = ref("")
+const currentPage = ref(0)
 const formSchema = Yup.object().shape({
   email: Yup.string().required().email()
 })
@@ -44,12 +54,29 @@ onMounted(async () => {
     مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
   </base-show-more>
 
-  {{email}}
+  {{ email }}
   <Form :validation-schema="formSchema">
 
     <base-input name="email" label="ایمیل" v-model="email"></base-input>
 
   </Form>
+
+  <h1>SLIDER</h1>
+
+  <Swiper
+      :modules="[SwiperEffectCreative]"
+      :slides-per-view="4"
+
+
+  >
+
+    <SwiperSlide v-for="slide in 10" :key="slide">
+      {{ slide }}
+    </SwiperSlide>
+
+  </Swiper>
+
+
 </template>
 
 <style scoped>
