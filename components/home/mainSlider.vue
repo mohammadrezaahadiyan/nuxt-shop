@@ -16,6 +16,7 @@ const props = defineProps<{ data: SliderDto[] }>()
           delay: 4000,
           pauseOnMouseEnter: true
         }"
+        v-if="props.data && props.data.length > 0"
     >
 
       <SwiperSlide v-for="item in props.data" :key="item.id" class="swiper-slide main-swiper-slide">

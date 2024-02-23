@@ -8,7 +8,10 @@ const props = defineProps<{
   position: BannerPosition
 }>()
 
-const filteredBanners = props.banners.filter(f => f.position === props.position)
+ const filteredBanners = props.banners.filter(f => f.position === props.position)
+
+
+
 </script>
 
 <template>

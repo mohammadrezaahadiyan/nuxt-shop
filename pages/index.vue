@@ -21,7 +21,7 @@ onMounted(async () => {
     <HomeBanners v-if="homeStore.banners" :banners="homeStore.banners" :position="BannerPosition.topSide"/>
 
     <div class="row mb-5">
-      <HomeMainSlider v-if="homeStore.sliders" :data="homeStore.sliders"/>
+      <HomeMainSlider :data="homeStore.sliders"/>
       <HomeBanners v-if="homeStore.banners" :banners="homeStore.banners" :position="BannerPosition.leftSide"/>
     </div>
 
