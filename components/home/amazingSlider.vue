@@ -28,7 +28,7 @@ const props = defineProps<{
 
         <div class="amazing-container">
           <Swiper
-              :slides-per-view="4"
+              slides-per-view='auto'
               :modules="[SwiperNavigation, SwiperPagination]"
               :navigation="true"
               :pagination="{
@@ -38,6 +38,13 @@ const props = defineProps<{
                 type: 'slide',
                 transition: 'slide'
               }"
+              :space-between="20"
+              :center-insufficient-slides="true"
+              :breakpoints="{
+                320:{slidesPerView: 1},
+                576:{slidesPerView: 2},
+                992:{slidesPerView: 4},
+          }"
           >
             <SwiperSlide v-for="item in props.products" class="product-card m-2">
               <div class="product-thumbnail">
@@ -127,9 +134,16 @@ const props = defineProps<{
 
 .amazing-container .swiper {
   overflow-y: visible !important;
+  padding: 10px;
 }
 
-.amazing-container .swiper-pagination-horizontal{
+.amazing-container .swiper-pagination-horizontal {
   bottom: -30px !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .amazing-container .swiper-pagination-horizontal{
+    bottom: -10px !important;
+  }
 }
 </style>

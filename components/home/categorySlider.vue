@@ -15,7 +15,8 @@ const props = defineProps<{
     <!-- Additional required wrapper -->
       <!-- Slides -->
       <Swiper
-          :slides-per-view="5"
+          v-if="props.categories"
+          slides-per-view='auto'
           :modules="[SwiperNavigation, SwiperPagination]"
           :navigation="true"
           :pagination="{
@@ -28,7 +29,12 @@ const props = defineProps<{
               }"
           :center-insufficient-slides="true"
           :space-between="20"
-          v-if="props.categories"
+          :breakpoints="{
+            320:{slidesPerView: 1},
+            576:{slidesPerView: 2},
+            768:{slidesPerView: 3},
+            992:{slidesPerView: 4},
+          }"
       >
 
           <SwiperSlide v-for="item in props.categories">
@@ -65,6 +71,12 @@ const props = defineProps<{
 
 .category-container .swiper-pagination-horizontal{
   bottom: -40px !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .category-container .swiper-pagination-horizontal{
+    bottom: 0 !important;
+  }
 }
 
 </style>

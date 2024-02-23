@@ -29,14 +29,14 @@ const props = defineProps<{ data: SliderDto[] }>()
   </div>
 </template>
 
-<style scoped>
+<style>
 .carousel__item {
   border-radius: 15px;
   width: 100%;
 }
 
 .carousel__item img {
-  height: 455px;
+  height: auto;
   width: 100%;
   border-radius: 15px;
 }
@@ -74,5 +74,16 @@ const props = defineProps<{ data: SliderDto[] }>()
   background: #fff3f4 !important;
   width: 8px !important;
   height: 8px !important;
+}
+
+@media only screen and (max-width: 767px) {
+  .swiper-button-prev, .swiper-button-next {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .swiper-button-prev::after, .swiper-button-next::after {
+    font-size: 17px !important;
+  }
 }
 </style>

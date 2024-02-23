@@ -16,15 +16,15 @@ const props = defineProps<{
 
 <template>
 
-  <div class="row mb-3 d-sm-block d-none" v-if="props.position == BannerPosition.topSide" v-for="banner in filteredBanners" :key="banner.id">
-    <div class="col-12">
+  <div class="row mb-3 d-sm-block top-banner" v-if="props.position == BannerPosition.topSide" v-for="banner in filteredBanners" :key="banner.id">
+    <div class="col-12" >
       <div class="banner-img">
         <a :href="banner.link"><img :src="`${getBannerImage(banner.imageName)}`" alt="banner"></a>
       </div>
     </div>
   </div>
 
-  <div class="col-lg-4" v-if="props.position == BannerPosition.leftSide">
+  <div class="col-lg-4 left-banner" v-if="props.position == BannerPosition.leftSide">
     <div class="row">
       <div class="col-lg-12 col-6 mb-lg-3" v-for="banner in filteredBanners.slice(0,2)" :key="banner.id">
 
@@ -42,7 +42,7 @@ const props = defineProps<{
     </div>
   </div>
 
-  <div class="row mb-5" v-if="props.position == BannerPosition.bottomSide">
+  <div class="row mb-5 bottom-banner" v-if="props.position == BannerPosition.bottomSide">
     <div class="col-md-6 mb-lg-0 mb-3" v-for="banner in filteredBanners.slice(0,2)" :key="banner.id">
 
       <div class="banner-img">
@@ -53,7 +53,7 @@ const props = defineProps<{
     </div>
   </div>
 
-  <div class="row mb-5" v-if="props.position == BannerPosition.middleSide">
+  <div class="row mb-5 middle-banner" v-if="props.position == BannerPosition.middleSide">
     <div class="col-md-3 col-6 mb-lg-0 mb-3" v-for="banner in filteredBanners.slice(0,4)" :key="banner.id">
 
       <div class="banner-img">
