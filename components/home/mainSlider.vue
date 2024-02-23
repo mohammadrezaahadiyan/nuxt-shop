@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import "vue3-carousel/dist/carousel.css"
 import type {SliderDto} from "~/models/home/homeDataDto";
 import {getSliderImage} from "~/utilities/imageUrls";
 

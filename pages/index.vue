@@ -2,15 +2,16 @@
 import {useHomeStore} from "~/stores/homeStore";
 import {BannerPosition} from "~/models/home/homeDataDto";
 import AmazingSlider from "~/components/home/amazingSlider.vue";
+import CategorySlider from "~/components/home/categorySlider.vue";
 
 const homeStore = useHomeStore()
+const categoryStore = useCategoryStore()
 
 onMounted(async () => {
   await homeStore.setHomeData()
+  await categoryStore.setData()
 })
-if (homeStore.banners){
-  console.log(homeStore.banners)
-}
+
 </script>
 
 <template>
@@ -25,6 +26,7 @@ if (homeStore.banners){
     </div>
 
     <HomeBanners v-if="homeStore.banners" :banners="homeStore.banners" :position="BannerPosition.bottomSide"/>
+
     <!-- start of box => specials-product-slider -->
     <div class="ui-box ui-box-specials pb-3 mb-5" style="background-color: #f03426;">
       <div class="container">
@@ -44,110 +46,22 @@ if (homeStore.banners){
       </div>
     </div>
     <!-- end of box => specials-product-slider -->
+
     <!-- start of box => categories-slider -->
     <div class="ui-box mb-5">
       <div class="ui-box-title">دسته بندی محصولات</div>
       <div class="ui-box-content">
         <div class="categories-container">
-          <!-- Slider main container -->
-          <div class="swiper category-swiper-slider pb-5">
-            <!-- Additional required wrapper -->
-            <div class="swiper-wrapper">
-              <!-- Slides -->
-              <div class="swiper-slide">
-                <div class="category-item">
-                  <a href="#">
-                    <img src="/images/categories/01.jpg" class="category-img"
-                         alt="">
-                    <span class="category-title">گوشی موبایل</span>
-                  </a>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="category-item">
-                  <a href="#">
-                    <img src="/images/categories/02.jpg" class="category-img"
-                         alt="">
-                    <span class="category-title">لوازم جانبی گوشی موبایل</span>
-                  </a>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="category-item">
-                  <a href="#">
-                    <img src="/images/categories/03.jpg" class="category-img"
-                         alt="">
-                    <span class="category-title">کامپیوترهای All-in-One</span>
-                  </a>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="category-item">
-                  <a href="#">
-                    <img src="/images/categories/04.jpg" class="category-img"
-                         alt="">
-                    <span class="category-title">کنسول بازی</span>
-                  </a>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="category-item">
-                  <a href="#">
-                    <img src="/images/categories/05.jpg" class="category-img"
-                         alt="">
-                    <span class="category-title">پخش کننده خانگی</span>
-                  </a>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="category-item">
-                  <a href="#">
-                    <img src="/images/categories/06.jpg" class="category-img"
-                         alt="">
-                    <span class="category-title">لوازم شست و شو و نظافت</span>
-                  </a>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="category-item">
-                  <a href="#">
-                    <img src="/images/categories/07.jpg" class="category-img"
-                         alt="">
-                    <span class="category-title">لباس مردانه</span>
-                  </a>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="category-item">
-                  <a href="#">
-                    <img src="/images/categories/08.jpg" class="category-img"
-                         alt="">
-                    <span class="category-title">لباس زنانه</span>
-                  </a>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="category-item">
-                  <a href="#">
-                    <img src="/images/categories/03.jpg" class="category-img"
-                         alt="">
-                    <span class="category-title">کامپیوترهای All-in-One</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <!-- If we need pagination -->
-            <div class="swiper-pagination"></div>
 
-            <!-- If we need navigation buttons -->
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
-          </div>
+          <HomeCategorySlider :categories="categoryStore.categoryData"/>
+
         </div>
       </div>
     </div>
     <!-- end of box => categories-slider -->
+
     <HomeBanners v-if="homeStore.banners" :banners="homeStore.banners" :position="BannerPosition.middleSide"/>
+
     <!-- start of box -->
     <div class="ui-box mb-5">
       <div class="ui-box-title">منتخب محصولات تخفیف و حراج</div>

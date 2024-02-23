@@ -2,7 +2,14 @@
 import * as Yup from "yup";
 import {Form} from "vee-validate"
 import {FetchApi} from "~/utilities/CustomFetchApi";
+import {useCategoryStore} from "~/stores/categoryStore";
 
+const categoryStore = useCategoryStore();
+
+onMounted(async () => {
+  await categoryStore.setData()
+
+})
 
 const items = [
   'https://picsum.photos/600/800?random=1',
@@ -28,6 +35,14 @@ onMounted(async () => {
 </script>
 
 <template>
+
+  <div v-if="categoryStore.categoryData">
+
+    <span v-for="item in categoryStore.categoryData" :key="item">
+      {{ item.title }}
+    </span>
+
+  </div>
 
   <div>
     <base-button w-full outline size="lg" @click="isOpenModal = true">

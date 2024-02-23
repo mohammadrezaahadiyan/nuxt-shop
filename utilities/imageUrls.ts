@@ -8,6 +8,10 @@ export const getBannerImage = (imageName:string) => {
 export const getProductImage = (imageName:string) => {
     return "https://shop-api.codeyad-project.ir/images/products/" + imageName;
 }
+export const getCategoryImage = (imageName:string) => {
+    return "https://shop-api.codeyad-project.ir/images/categories/" + imageName;
+}
+
 export const getUserAvatar = (imageName:string) => {
     return "https://shop-api.codeyad-project.ir/images/avatar/" + imageName;
 }

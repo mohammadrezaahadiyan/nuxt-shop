@@ -26,7 +26,7 @@ const props = defineProps<{
           </div>
         </div>
 
-        <div>
+        <div class="amazing-container">
           <Swiper
               :slides-per-view="4"
               :modules="[SwiperNavigation, SwiperPagination]"
@@ -115,13 +115,21 @@ const props = defineProps<{
 
 <style>
 
-.swiper-pagination-bullet {
+.amazing-container .swiper-pagination-bullet {
   background-color: #000000 !important;
   opacity: 1 !important;
 }
 
-.swiper-pagination-bullet-active {
+.amazing-container .swiper-pagination-bullet-active {
   background-color: #ffffff !important;
   opacity: 1 !important;
+}
+
+.amazing-container .swiper {
+  overflow-y: visible !important;
+}
+
+.amazing-container .swiper-pagination-horizontal{
+  bottom: -30px !important;
 }
 </style>
