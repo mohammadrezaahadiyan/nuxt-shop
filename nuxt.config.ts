@@ -1,14 +1,24 @@
+import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
     devtools: {enabled: true},
     css: [
         "@/assets/css/custom.css",
-        "assets/css/theme.css"
+        "assets/css/theme.css",
     ],
-    modules:['@pinia/nuxt', 'nuxt-swiper'],
+    build:{
+      transpile: ['vuetify']
+    },
+    modules:['@pinia/nuxt', 'nuxt-swiper', (_options, nuxt) => {
+        nuxt.hooks.hook('vite:extendConfig', (config) => {
+            config.plugins?.push(vuetify({autoImport: true}))
+        })
+    }],
     vite:{
-        server:{
-            proxy:{'/api': "https://shop-api.codeyad-project.ir/"}
-        }
+        vue: {
+            template: {
+                transformAssetUrls,
+            },
+        },
     },
 
 })

@@ -91,6 +91,17 @@ onMounted(async () => {
 
   </Swiper>
 
+  <v-tabs>
+    <v-tab>
+      asdsad
+    </v-tab>
+    <v-tab>
+      asdsadsa2222
+    </v-tab>
+  </v-tabs>
+  <v-btn>
+    btn
+  </v-btn>
 
 </template>
 
