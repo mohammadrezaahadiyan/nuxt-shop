@@ -3,12 +3,15 @@ import * as Yup from "yup";
 import {Form} from "vee-validate"
 import {FetchApi} from "~/utilities/CustomFetchApi";
 import {useCategoryStore} from "~/stores/categoryStore";
+import {useHomeStore} from "~/stores/homeStore";
+import {useProductStore} from "~/stores/productStore";
 
-const categoryStore = useCategoryStore();
+const homeStore = useHomeStore()
+const categoryStore = useCategoryStore()
 
 onMounted(async () => {
+  await homeStore.setHomeData()
   await categoryStore.setData()
-
 })
 
 const items = [

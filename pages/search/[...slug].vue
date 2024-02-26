@@ -1,5 +1,15 @@
 <script setup lang="ts">
 
+import {useProductStore} from "~/stores/productStore";
+
+const productStore =useProductStore()
+
+onMounted(async () => {
+  const filterParams = productStore.getFilterParams()
+  await productStore.getProducts()
+  console.log(productStore.filteredProducts)
+})
+
 </script>
 
 <template>

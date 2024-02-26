@@ -2,14 +2,13 @@ import type {FilterParams} from "~/models/base/filterParams";
 import type {FilterResult} from "~/models/base/filterResults";
 import type {ProductCardDto} from "~/models/productCard";
 
-
 export interface ProductFilterResultDto extends FilterResult<ProductCardDto>{
 
 }
 
 export interface ProductFilterParamsDto extends FilterParams {
-    categorySlug: string;
-    search: string;
+    categorySlug: string | undefined;
+    search: string | undefined;
     onlyAvailableProducts: boolean;
     justHasDiscount: boolean;
     searchOrderBy: ProductSearchResultOrderBy | null;

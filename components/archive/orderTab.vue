@@ -4,6 +4,30 @@
 
 <template>
 
+  <v-tabs
+      fixed-tabs
+      bg-color="indigo-darken-2"
+  >
+    <v-tab>
+      پربازدید ترین
+    </v-tab>
+    <v-tab>
+      پر فروش ترینن
+    </v-tab>
+    <v-tab>
+     محبوب ترین
+    </v-tab>
+    <v-tab>
+      جدید ترین
+    </v-tab>
+    <v-tab>
+      ارزان ترین
+    </v-tab>
+    <v-tab>
+      گران ترین
+    </v-tab>
+  </v-tabs>
+
   <ul class="nav nav-pills nav-tabs align-items-center">
     <li class="d-inline-flex align-items-center nav-item me-3 text-muted">
       <i class="ri-equalizer-line me-2"></i>

@@ -1,12 +1,13 @@
-import type {FilterParams} from "~/models/base/filterParams";
 import type {ApiResponse} from "~/models/ApiResponse";
-import type {ProductFilterResultDto} from "~/models/search/searchResultDto";
+import type {ProductFilterParamsDto, ProductFilterResultDto} from "~/models/search/searchResultDto";
 import {FetchApi} from "~/utilities/CustomFetchApi";
+import {removeEmptyProps} from "~/utilities/objectutils";
 
-export const getProductByFilter = (filterParams: FilterParams)
-    :Promise<ApiResponse<ProductFilterResultDto>> => {
+export const getProductByFilter = (filterParams: ProductFilterParamsDto)
+    :Promise<ApiResponse<ProductFilterResultDto[]>> => {
+        removeEmptyProps(filterParams)
         return FetchApi('/product/shop', {
-            body: filterParams,
+            params: filterParams,
             method: 'GET'
         })
 }
