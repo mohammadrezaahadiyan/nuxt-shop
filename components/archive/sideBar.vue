@@ -1,5 +1,18 @@
 <script setup lang="ts">
 
+const router = useRouter()
+const route = useRoute()
+const searchParam = ref('')
+const searchItem = () => {
+  const currentPath = route.path
+  const queryParams = route.query
+  router.push({
+    path: currentPath,
+    query: {...queryParams, search:searchParam.value}
+  })
+  searchParam.value = ''
+}
+
 </script>
 
 <template>
@@ -45,9 +58,9 @@
         <div class="widget mb-3">
           <div class="widget-title">جستجو در نتایج:</div>
           <div class="widget-content widget--search">
-            <form action="#">
+            <form @submit.prevent="searchItem">
               <div class="form-element-row">
-                <input type="text" name="s" class="form-control"
+                <input v-model="searchParam" type="text" class="form-control"
                        placeholder="نام محصول یا…">
                 <i class="ri-search-line icon"></i>
               </div>
@@ -73,110 +86,108 @@
                   <input class="form-check-input" type="checkbox" value=""
                          id="brandOption1">
                   <label class="form-check-label d-block" for="brandOption1">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>شیائومی</span>
-                                                            <span class="text-muted en_text fs-7">Xiaomi</span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>شیائومی</span>
+                      <span class="text-muted en_text fs-7">Xiaomi</span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="brandOption2">
                   <label class="form-check-label d-block" for="brandOption2">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>سامسونگ</span>
-                                                            <span class="text-muted en_text fs-7">Samsung</span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>سامسونگ</span>
+                      <span class="text-muted en_text fs-7">Samsung</span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="brandOption3">
                   <label class="form-check-label d-block" for="brandOption3">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>اپل</span>
-                                                            <span class="text-muted en_text fs-7">Apple</span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between"><span>اپل</span>
+                      <span class="text-muted en_text fs-7">Apple</span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="brandOption4">
                   <label class="form-check-label d-block" for="brandOption4">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>نوکیا</span>
-                                                            <span class="text-muted en_text fs-7">Nokia</span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>نوکیا</span>
+                      <span class="text-muted en_text fs-7">Nokia</span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="brandOption5">
                   <label class="form-check-label d-block" for="brandOption5">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>هوآوی</span>
-                                                            <span class="text-muted en_text fs-7">Huawei</span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>هوآوی</span>
+                      <span class="text-muted en_text fs-7">Huawei</span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="brandOption6">
                   <label class="form-check-label d-block" for="brandOption6">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>موتورولا</span>
-                                                            <span class="text-muted en_text fs-7">Motorola</span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>موتورولا</span>
+                      <span class="text-muted en_text fs-7">Motorola</span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="brandOption7">
                   <label class="form-check-label d-block" for="brandOption7">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>آنر</span>
-                                                            <span class="text-muted en_text fs-7">Honor</span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>آنر</span>
+                      <span class="text-muted en_text fs-7">Honor</span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="brandOption8">
                   <label class="form-check-label d-block" for="brandOption8">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>ال جی</span>
-                                                            <span class="text-muted en_text fs-7">LG</span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>ال جی</span>
+                      <span class="text-muted en_text fs-7">LG</span></span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="brandOption9">
                   <label class="form-check-label d-block" for="brandOption9">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>جی پلاس</span>
-                                                            <span class="text-muted en_text fs-7">G Plus</span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>جی پلاس</span>
+                      <span class="text-muted en_text fs-7">G Plus</span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="brandOption10">
                   <label class="form-check-label d-block" for="brandOption10">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>مایکروسافت</span>
-                                                            <span class="text-muted en_text fs-7">Microsoft</span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>مایکروسافت</span>
+                      <span class="text-muted en_text fs-7">Microsoft</span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="brandOption11">
                   <label class="form-check-label d-block" for="brandOption11">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>بلک بری</span>
-                                                            <span class="text-muted en_text fs-7">BlackBerry</span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>بلک بری</span>
+                      <span class="text-muted en_text fs-7">BlackBerry</span>
+                    </span>
                   </label>
                 </div>
               </div>
@@ -189,9 +200,8 @@
           <div class="widget-content widget--filter-switcher">
             <div class="d-flex border-bottom pb-1 mb-2">
               <i class="ri-user-2-fill text-primary me-2"></i>
-              <span class="fs-7">با خرید از کالاهایی با امکان ارسال توسط فروشنده سفارش خود
-                                                را
-                                                زودتر تحویل بگیرید </span>
+              <span class="fs-7">با خرید از کالاهایی با امکان ارسال توسط فروشنده سفارش خود را
+                زودتر تحویل بگیرید </span>
             </div>
             <div class="form-check form-switch mb-0">
               <input class="form-check-input" type="checkbox" id="has_ship_by_seller">
@@ -241,44 +251,44 @@
                   <input class="form-check-input" type="checkbox" value=""
                          id="colorOption1">
                   <label class="form-check-label d-block" for="colorOption1">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>مشکی</span>
-                                                            <span class="color-preview"
-                                                                  style="background-color: rgb(43,43,43);"></span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>مشکی</span>
+                      <span class="color-preview"
+                            style="background-color: rgb(43,43,43);"></span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="colorOption2">
                   <label class="form-check-label d-block" for="colorOption2">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>آبی</span>
-                                                            <span class="color-preview"
-                                                                  style="background-color: rgb(0,0,255);"></span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>آبی</span>
+                      <span class="color-preview"
+                            style="background-color: rgb(0,0,255);"></span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="colorOption3">
                   <label class="form-check-label d-block" for="colorOption3">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>سفید</span>
-                                                            <span class="color-preview"
-                                                                  style="background-color: rgb(255,255,255);"></span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>سفید</span>
+                      <span class="color-preview"
+                            style="background-color: rgb(255,255,255);"></span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="colorOption4">
                   <label class="form-check-label d-block" for="colorOption4">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>خاکستری</span>
-                                                            <span class="color-preview"
-                                                                  style="background-color: rgb(128,128,128);"></span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>خاکستری</span>
+                      <span class="color-preview"
+                            style="background-color: rgb(128,128,128);"></span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
@@ -296,66 +306,66 @@
                   <input class="form-check-input" type="checkbox" value=""
                          id="colorOption6">
                   <label class="form-check-label d-block" for="colorOption6">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>بنفش</span>
-                                                            <span class="color-preview"
-                                                                  style="background-color: rgb(128,0,128);"></span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      `<span>بنفش</span>
+                      <span class="color-preview"
+                            style="background-color: rgb(128,0,128);"></span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="colorOption7">
                   <label class="form-check-label d-block" for="colorOption7">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>نقره ای</span>
-                                                            <span class="color-preview"
-                                                                  style="background-color: rgb(222,222,222);"></span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>نقره ای</span>
+                      <span class="color-preview"
+                            style="background-color: rgb(222,222,222);"></span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="colorOption8">
                   <label class="form-check-label d-block" for="colorOption8">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>طلایی</span>
-                                                            <span class="color-preview"
-                                                                  style="background-color: rgb(201,146,18);"></span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>طلایی</span>
+                      <span class="color-preview"
+                            style="background-color: rgb(201,146,18);"></span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="colorOption9">
                   <label class="form-check-label d-block" for="colorOption9">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>آبی تیره</span>
-                                                            <span class="color-preview"
-                                                                  style="background-color: rgb(76,94,116);"></span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>آبی تیره</span>
+                      <span class="color-preview"
+                            style="background-color: rgb(76,94,116);"></span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="colorOption10">
                   <label class="form-check-label d-block" for="colorOption10">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>آبی روشن</span>
-                                                            <span class="color-preview"
-                                                                  style="background-color: rgb(64,170,255);"></span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>آبی روشن</span>
+                      <span class="color-preview"
+                            style="background-color: rgb(64,170,255);"></span>
+                    </span>
                   </label>
                 </div>
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value=""
                          id="colorOption11">
                   <label class="form-check-label d-block" for="colorOption11">
-                                                        <span class="d-flex align-items-center justify-content-between">
-                                                            <span>زرد</span>
-                                                            <span class="color-preview"
-                                                                  style="background-color: rgb(255,255,0);"></span>
-                                                        </span>
+                    <span class="d-flex align-items-center justify-content-between">
+                      <span>زرد</span>
+                      <span class="color-preview"
+                            style="background-color: rgb(255,255,0);"></span>
+                    </span>
                   </label>
                 </div>
               </div>

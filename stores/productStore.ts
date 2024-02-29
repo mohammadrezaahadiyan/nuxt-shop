@@ -6,13 +6,17 @@ import {
 } from "~/models/search/searchResultDto";
 import type {ApiResponse} from "~/models/ApiResponse";
 import {getProductByFilter} from "~/services/product.service";
+import type {ProductCardDto} from "~/models/productCard";
 
 
 export const useProductStore = defineStore('product', () => {
 
-    const filteredProducts: Ref<ProductFilterResultDto[] | null> = ref([])
+    const loading = ref(false)
     const route = useRoute()
     const routeParams = route.path.split('/')
+    const response: Ref<ProductFilterResultDto | null> = ref(null)
+    const filteredProducts: Ref<ProductCardDto[] | null> = ref([])
+
 
     const getFilterParams = (): ProductFilterParamsDto => {
         const params = route.path.split('/')
@@ -22,7 +26,7 @@ export const useProductStore = defineStore('product', () => {
             justHasDiscount: getBoolean(route.query.justHasDiscount?.toString()),
             onlyAvailableProducts: getBoolean(route.query.onlyAvailableProducts?.toString()),
             pageId: Number(route.query.pageId?.toString() ?? "1"),
-            search: route.query.q?.toString(),
+            search: route.query.search?.toString(),
             take: 8,
             searchOrderBy:
             //@ts-ignore
@@ -33,14 +37,18 @@ export const useProductStore = defineStore('product', () => {
     // @ts-ignore
     const getProducts = async ():Promise<ApiResponse<ProductFilterResultDto>> => {
         let params = getFilterParams()
-
+        loading.value = true
         let result = await getProductByFilter(params)
         if (result){
-            filteredProducts.value = result.data
+            response.value = result.data
+            if (response.value){
+                filteredProducts.value = response.value.data
+            }
         }
+        loading.value = false
     }
 
-    return {getFilterParams, getProducts, filteredProducts}
+    return {getProducts, filteredProducts}
 })
 
 function getBoolean(value: any): boolean {

@@ -4,7 +4,7 @@ import {FetchApi} from "~/utilities/CustomFetchApi";
 import {removeEmptyProps} from "~/utilities/objectutils";
 
 export const getProductByFilter = (filterParams: ProductFilterParamsDto)
-    :Promise<ApiResponse<ProductFilterResultDto[]>> => {
+    :Promise<ApiResponse<ProductFilterResultDto>> => {
         removeEmptyProps(filterParams)
         return FetchApi('/product/shop', {
             params: filterParams,
