@@ -55,10 +55,10 @@ watch(
                 <div class="ui-box-content">
                   <div class="row mx-0">
                     <div :class="['product-card-container mb-4',
-                    {'col-xl-12 col-lg-8 col-md-6 col-sm-6 d-flex flex-wrap gap-3': viewType == 0 },
-                    {'col-lg-6 col-md-12 col-sm-6': viewType == 1}
+                    {'col-xl-12 col-lg-8 col-md-6 col-sm-12 d-flex flex-wrap gap-lg-3 gap-md-3 justify-content-center gap-sm-5': viewType == 0 },
+                    {'col-12': viewType == 1}
                     ]">
-                      <ArchiveProductCard v-for="product in productStore.filteredProducts" :key="product.id" :product="product" :class="{'product-card-horizontal': viewType == 1}"/>
+                      <ArchiveProductCard v-for="product in productStore.filteredProducts" :key="product.id" :product="product" :viewType="viewType" :class="{'product-card-horizontal': viewType == 1}"/>
                     </div>
                   </div>
                 </div>

@@ -4,13 +4,15 @@ import {getProductImage} from "~/utilities/imageUrls";
 
 const props = defineProps<{
   product:ProductCardDto
+  viewType:number
 }>()
 
 </script>
 
 <template>
 
-  <div class="product-card">
+  <div class="product-card justify-content-center"
+       :style="[viewType == 0 ? {'width': '215px'} : {'width': '100%', 'margin': '0 10px 10px 0'}]">
     <div class="product-thumbnail">
       <a href="#">
         <img :src="getProductImage(product.imageName)"
