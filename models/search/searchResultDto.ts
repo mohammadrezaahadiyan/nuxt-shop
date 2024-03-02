@@ -12,6 +12,8 @@ export interface ProductFilterParamsDto extends FilterParams {
     search: string | undefined;
     onlyAvailableProducts: boolean;
     justHasDiscount: boolean;
+    startPrice: number;
+    endPrice: number;
     searchOrderBy: ProductSearchResultOrderBy | null;
 }
 

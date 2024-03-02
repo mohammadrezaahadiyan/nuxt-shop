@@ -6,7 +6,16 @@ const route = useRoute()
 
 const currentCategory = ref(route.path.split('/')[2]?.split('category-')[1])
 const searchParam = ref('')
-const isOpen = ref(false)
+
+const onlyAvailable = ref(false)
+const hasDiscount = ref(false)
+const range = ref([0,10])
+watch(
+    () => [onlyAvailable.value, hasDiscount.value, range.value],
+    () => {
+      otherFilters(onlyAvailable.value, hasDiscount.value, range.value)
+    }
+)
 
 onMounted( async () => {
   await categoryStore.setData()
@@ -30,7 +39,19 @@ const filteredByCategory = (slug:any) => {
     path: currentPath,
     query: {...queryParams, categorySlug: slug}
   })
+}
 
+const otherFilters = (filterOne:any, filterTwo:any, filterThree:any) => {
+  const currentPath = route.path
+  const queryParams = route.query
+  router.push({
+    path: currentPath,
+    query: {...queryParams, onlyAvailableProducts:filterTwo, justHasDiscount:filterOne,
+      startPrice: filterThree[0], endPrice: filterThree[1]
+    }
+  })
+
+  console.log(filterThree)
 }
 </script>
 
@@ -99,10 +120,21 @@ const filteredByCategory = (slug:any) => {
               <span class="fs-7">با خرید از کالاهایی با امکان ارسال توسط فروشنده سفارش خود را
                 زودتر تحویل بگیرید </span>
             </div>
+          </div>
+        </div>
+        <!-- end of widget -->
+        <!-- start of widget -->
+        <div class="widget py-1 mb-3">
+          <div class="widget-content widget--filter-switcher">
             <div class="form-check form-switch mb-0">
-              <input class="form-check-input" type="checkbox" id="has_ship_by_seller">
-              <label class="form-check-label" for="has_ship_by_seller">امکان ارسال توسط
-                فروشنده</label>
+              <v-switch
+                  v-model="hasDiscount"
+                  label="فقط اخفیف دار ها"
+                  color="primary"
+                  hide-details
+                  inset
+              >
+              </v-switch>
             </div>
           </div>
         </div>
@@ -111,20 +143,15 @@ const filteredByCategory = (slug:any) => {
         <div class="widget py-1 mb-3">
           <div class="widget-content widget--filter-switcher">
             <div class="form-check form-switch mb-0">
-              <input class="form-check-input" type="checkbox" id="has_jet_delivery">
-              <label class="form-check-label" for="has_jet_delivery">فقط ارسال
-                فوری</label>
-            </div>
-          </div>
-        </div>
-        <!-- end of widget -->
-        <!-- start of widget -->
-        <div class="widget py-1 mb-3">
-          <div class="widget-content widget--filter-switcher">
-            <div class="form-check form-switch mb-0">
-              <input class="form-check-input" type="checkbox" id="has_selling_stock">
-              <label class="form-check-label" for="has_selling_stock">فقط کالاهای
-                موجود</label>
+              <v-switch
+                  v-model="onlyAvailable"
+                  label="فقط اخفیف دار ها"
+                  color="primary"
+                  hide-details
+                  inset
+
+              >
+              </v-switch>
             </div>
           </div>
         </div>
@@ -135,6 +162,15 @@ const filteredByCategory = (slug:any) => {
                data-bs-target="#collapsePriceFilter" aria-expanded="false"
                aria-controls="collapsePriceFilter" role="button">محدوده قیمت
           </div>
+
+          <v-range-slider
+              max="10000000"
+              min="0"
+              v-model="range"
+              step="10"
+              thumb-label="always"
+          ></v-range-slider>
+
         </div>
         <!-- end of widget -->
       </div>
@@ -149,5 +185,4 @@ const filteredByCategory = (slug:any) => {
   font-weight: bolder !important;
   color: #2962ff !important;
 }
-
 </style>

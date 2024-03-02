@@ -28,6 +28,8 @@ export const useProductStore = defineStore('product', () => {
             onlyAvailableProducts: getBoolean(route.query.onlyAvailableProducts?.toString()),
             pageId: Number(route.query.pageId?.toString() ?? "1"),
             search: route.query.search?.toString(),
+            startPrice: Number(route.query.startPrice?.toString() ?? "0"),
+            endPrice: Number(route.query.endPrice?.toString() ?? "0"),
             take: 2,
             searchOrderBy:
             //@ts-ignore

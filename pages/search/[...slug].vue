@@ -14,8 +14,6 @@ watch(
     () => route.query,
     async () => {
       await productStore.getProducts()
-      const filteredProducts = productStore.filteredProducts
-      console.log("GAEIDI SEYYED")
     }
 )
 </script>
