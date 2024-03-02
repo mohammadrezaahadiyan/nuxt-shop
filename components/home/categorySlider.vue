@@ -39,11 +39,11 @@ const props = defineProps<{
 
           <SwiperSlide v-for="item in props.categories">
             <div class="category-item">
-              <a href="#">
+              <NuxtLink :to="`/search/category-${item.slug}`">
                 <img :src="`${getCategoryImage(item.imageName)}`" class="category-img"
                      :alt="item.title">
                 <span class="category-title">{{ item.title }}</span>
-              </a>
+              </NuxtLink>
             </div>
           </SwiperSlide>
 

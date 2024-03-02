@@ -7,6 +7,7 @@ import {
 import type {ApiResponse} from "~/models/ApiResponse";
 import {getProductByFilter} from "~/services/product.service";
 import type {ProductCardDto} from "~/models/productCard";
+import type {CategoryDto} from "~/models/categories/categoryDto";
 
 
 export const useProductStore = defineStore('product', () => {
@@ -22,7 +23,7 @@ export const useProductStore = defineStore('product', () => {
         const params = route.path.split('/')
 
         return  {
-            categorySlug: params[2]?.replace("category-", ""),
+            categorySlug: route.query.categorySlug?.toString(),
             justHasDiscount: getBoolean(route.query.justHasDiscount?.toString()),
             onlyAvailableProducts: getBoolean(route.query.onlyAvailableProducts?.toString()),
             pageId: Number(route.query.pageId?.toString() ?? "1"),

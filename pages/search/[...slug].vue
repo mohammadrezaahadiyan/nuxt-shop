@@ -4,12 +4,10 @@ import {useProductStore} from "~/stores/productStore";
 const route = useRoute()
 const router = useRouter()
 const productStore =useProductStore()
-
 const viewType = ref(0)
 
 onMounted(async () => {
   await productStore.getProducts()
-
 })
 
 watch(
@@ -17,6 +15,7 @@ watch(
     async () => {
       await productStore.getProducts()
       const filteredProducts = productStore.filteredProducts
+      console.log("GAEIDI SEYYED")
     }
 )
 </script>

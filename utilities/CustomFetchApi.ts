@@ -5,7 +5,7 @@ import {useAuthStore} from "~/stores/authStore";
 
 export async function FetchApi<T>(
     url: string,
-    config: FetchOptions = {}
+    config: FetchOptions = {},
 ): Promise<ApiResponse<T>> {
 
     config = {...config, baseURL: 'https://shop-api.codeyad-project.ir/api'}

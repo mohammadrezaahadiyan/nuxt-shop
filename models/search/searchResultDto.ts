@@ -4,7 +4,7 @@ import type {ProductCardDto} from "~/models/productCard";
 import type {CategoryDto} from "~/models/categories/categoryDto";
 
 export interface ProductFilterResultDto extends FilterResult<ProductCardDto>{
-    category:CategoryDto
+    categoryDto:CategoryDto
 }
 
 export interface ProductFilterParamsDto extends FilterParams {
