@@ -9,7 +9,7 @@ const viewType = ref(0)
 
 onMounted(async () => {
   await productStore.getProducts()
-  const filteredProducts = productStore.filteredProducts
+
 })
 
 watch(
@@ -26,7 +26,6 @@ watch(
   <div class="row">
     <ArchiveSideBar/>
     <div class="col-xl-9 col-lg-8 col-md-7">
-      <ArchiveBreadCrumb/>
 
       <button class="btn btn-primary mb-3 d-md-none toggle-responsive-sidebar">فیلتر پیشرفته
         <i class="ri-equalizer-fill ms-1"></i></button>
@@ -66,7 +65,7 @@ watch(
             </div>
           </div>
           <!-- end of tab-content -->
-         <ArchivePagination/>
+         <ArchivePagination v-if="productStore.response" :paginationData="productStore.response"/>
         </div>
       </div>
       <div class="responsive-sidebar-overlay"></div>

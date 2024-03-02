@@ -27,7 +27,7 @@ export const useProductStore = defineStore('product', () => {
             onlyAvailableProducts: getBoolean(route.query.onlyAvailableProducts?.toString()),
             pageId: Number(route.query.pageId?.toString() ?? "1"),
             search: route.query.search?.toString(),
-            take: 8,
+            take: 2,
             searchOrderBy:
             //@ts-ignore
                 (route.query.searchOrderBy as ProductSearchResultOrderBy) ?? null
@@ -48,7 +48,7 @@ export const useProductStore = defineStore('product', () => {
         loading.value = false
     }
 
-    return {getProducts, filteredProducts}
+    return {getProducts, filteredProducts, response}
 })
 
 function getBoolean(value: any): boolean {
